@@ -1,0 +1,2 @@
+.. |HU2019| replace:: Hu et al., *Phys. Rev. Lett.* (**123**), 2019
+.. |WILLIAMSON1980| replace:: Williamson, *J. Comput. Phys.* (**35**), 1980
