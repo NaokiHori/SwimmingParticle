@@ -133,3 +133,34 @@ and
     =
     0.
 
+.. note::
+
+    Despite not used in this project for now, the velocity components are obtained by differentiating the stream function in the frequency space:
+
+    .. math::
+
+        \left( U_{\vr} \right)_k
+        \equiv
+        -
+        k^2
+        \frac{
+            1 - {\vr}^2
+        }{
+            2 {\vr}^{\left| k \right| + 1}
+        }
+        M C_k^s,
+
+    .. math::
+
+        \left( U_{\vt} \right)_k
+        \equiv
+        \left[
+            \left( 1 - \frac{\left| k \right|}{2} \right)
+            \frac{1}{{\vr}^{\left| k \right| - 1}}
+            +
+            \frac{\left| k \right|}{2} \frac{1}{{\vr}^{\left| k \right| + 1}}
+        \right]
+        i k M C_k^s.
+
+    It is readily apparent that they satisfy the desired boundary conditions on the particle surface.
+
