@@ -16,5 +16,6 @@ The governing equations are based on |HU2019|, while the numerical treatments ar
 
     governing_equation.rst
     numerical_treatment.rst
+    appendix.rst
     reference.rst
 

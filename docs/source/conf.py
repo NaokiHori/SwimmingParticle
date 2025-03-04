@@ -26,8 +26,10 @@ macros["ut"] = ["u_{\\vt}", 0]
 macros["nr"] = ["N_{\\vr}", 0]
 macros["nt"] = ["N_{\\vt}", 0]
 macros["vat"] = ["\\left. #1 \\right|_{#2}", 2]
-macros["pder"] = ["\\frac{\\partial #1}{\\partial #2}", 2]
-macros["dder"] = ["\\frac{\\delta #1}{\\delta #2}", 2]
+macros["der"] = ["\\frac{d^{#1} {#2}}{d {#3}^{#1}}", 3]
+macros["pder"] = ["\\frac{\\partial^{#1} {#2}}{\\partial {#3}^{#1}}", 3]
+macros["dder"] = ["\\frac{\\delta^{#1} {#2}}{\\delta {#3}^{#1}}", 3]
+macros["expp"] = ["\\exp \\left( {#1} \\right)", 1]
 
 # discrete advective terms in scalar transport
 macros["ave"] = ["\\overline{#1}^{#2}", 2]

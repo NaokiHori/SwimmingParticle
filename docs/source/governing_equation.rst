@@ -1,3 +1,6 @@
+
+.. include:: /reference.txt
+
 ##################
 Governing Equation
 ##################
@@ -11,7 +14,7 @@ The liquid is assumed to be incompressible, leading to:
 
 .. math::
 
-    \pder{u_i}{x_i}
+    \pder{}{u_i}{x_i}
     =
     0.
 
@@ -19,27 +22,27 @@ We also assume that the Reynolds number is sufficiently small, resulting in the 
 
 .. math::
 
-    -
-    \pder{p}{x_i}
-    +
-    \pder{}{x_j}
-    \pder{u_i}{x_j}
+    0_i
     =
-    0_i.
+    -
+    \pder{}{p}{x_i}
+    +
+    \pder{}{}{x_j}
+    \pder{}{u_i}{x_j}.
 
 The particle emits a solute, which is transported into the liquid.
 The concentration of the solute (e.g., the non-dimensional mass per unit area) follows the advection-diffusion equation:
 
 .. math::
 
-    \pder{c}{t}
+    \pder{}{c}{t}
     +
     u_j
-    \pder{c}{x_j}
+    \pder{}{c}{x_j}
     =
     \frac{1}{Pe}
-    \pder{}{x_j}
-    \pder{c}{x_j}.
+    \pder{}{}{x_j}
+    \pder{}{c}{x_j}.
 
 *******************
 Boundary Conditions
@@ -79,7 +82,7 @@ while a slip velocity, proportional to the azimuthal concentration gradient, is 
     =
     \vat{
         \frac{1}{r}
-        \pder{c}{\vt}
+        \pder{}{c}{\vt}
     }{\vr = 1}.
 
 Since the Stokes equation is a pure boundary-value problem, the flow field is uniquely determined once the aforementioned boundary conditions are prescribed.
@@ -91,7 +94,7 @@ In particular, the solution can be conveniently expressed using the stream funct
     =
     \sum_k
     \Psi_k \left( \vr, t \right)
-    \exp \left( I k \vt \right),
+    \expp{I k \vt},
 
 where :math:`I` is the imaginary unit, and
 
@@ -100,7 +103,9 @@ where :math:`I` is the imaginary unit, and
     \Psi_k \left( \vr, t \right)
     =
     \frac{1 - \vr^2}{2 \vr^{\left| k \right|}}
-    I k M C_k^s.
+    I k M C_k^s,
+
+following |HU2019|.
 
 Here, :math:`C_k^s` represents the concentration field on the particle surface (at :math:`\vr = 1`) in the frequency domain:
 
@@ -109,7 +114,7 @@ Here, :math:`C_k^s` represents the concentration field on the particle surface (
     c \left( \vr = 1, \vt, t \right)
     =
     \sum_k
-    C_k^s \exp \left( I k \vt \right).
+    C_k^s \expp{I k \vt}.
 
 Note that, although this condition is not strictly met due to the presence of the outer wall, we assume it as a good approximation when :math:`R` is sufficiently large.
 
@@ -121,7 +126,7 @@ We impose the following conditions on the inner and outer boundaries, respective
 
 .. math::
 
-    \vat{\pder{c}{\vr}}{\vr = 1}
+    \vat{\pder{}{c}{\vr}}{\vr = 1}
     =
     -1,
 

@@ -25,7 +25,7 @@ From this given field, we compute the spectral representation on the particle su
     =
     \sum_{j = 0}^{\nt - 1}
     c_{0, j + 1}
-    \exp \left( - \frac{j k}{\nt} I \right),
+    \expp{- \frac{j k}{\nt} I},
 
 where :math:`k = 0, 1, \dots, \nt - 1`.
 Note that :math:`C_k^s` satisfies the complex-conjugate property:
@@ -46,7 +46,7 @@ Since the concentration :math:`c` is located at cell centers in the azimuthal di
     {C_k^s}^\prime
     \equiv
     C_k^s
-    \exp \left( - \pi \frac{k}{\nt} I \right).
+    \expp{- \pi \frac{k}{\nt} I}.
 
 Using :math:`{C_k^s}^\prime`, we compute the stream function in the frequency domain :math:`\Psi_{i + \frac{1}{2}, k}`:
 
@@ -71,14 +71,14 @@ Since the stream function :math:`\psi` is defined at cell corners, the staggered
     \vat{\ur}{i + \frac{1}{2}, j}
     =
     \frac{1}{\vr_{i + \frac{1}{2}}}
-    \vat{\dder{\psi}{\vt}}{i + \frac{1}{2}, j},
+    \vat{\dder{}{\psi}{\vt}}{i + \frac{1}{2}, j},
 
 .. math::
 
     \vat{\ut}{i, j + \frac{1}{2}}
     =
     -
-    \vat{\dder{\psi}{\vr}}{i, j + \frac{1}{2}}.
+    \vat{\dder{}{\psi}{\vr}}{i, j + \frac{1}{2}}.
 
 .. note::
 
@@ -87,16 +87,16 @@ Since the stream function :math:`\psi` is defined at cell corners, the staggered
     .. math::
 
         \frac{1}{\vr}
-        \dder{}{\vr}
+        \dder{}{}{\vr}
         \left(
             \vr
-            \dder{\ur}{\vr}
+            \dder{}{\ur}{\vr}
         \right)
         +
         \frac{1}{\vr}
-        \dder{}{\vt}
+        \dder{}{}{\vt}
         \left(
-            \dder{\ut}{\vt}
+            \dder{}{\ut}{\vt}
         \right)
         =
         0,
@@ -114,7 +114,7 @@ Since the concentration field is located at cell centers and is surrounded by st
 
 .. math::
 
-    \pder{\scalar}{t}
+    \pder{}{\scalar}{t}
     =
     &
     -
@@ -271,7 +271,7 @@ Given that the azimuthal grid is equidistant, we expand :math:`q` using a discre
     =
     \sum_l
     Q_{i, l}
-    \exp \left( 2 \pi \frac{j l}{\nt} I \right).
+    \expp{2 \pi \frac{j l}{\nt} I}.
 
 Since neighboring cell centers yield
 
@@ -281,8 +281,8 @@ Since neighboring cell centers yield
     =
     \sum_l
     Q_{i, l}
-    \exp \left( 2 \pi \frac{j l}{\nt} I \right)
-    \exp \left( \pm 2 \pi \frac{l}{\nt} I \right),
+    \expp{2 \pi \frac{j l}{\nt} I}
+    \expp{\pm 2 \pi \frac{l}{\nt} I},
 
 it follows that
 
@@ -302,7 +302,7 @@ it follows that
         4 \sin^2 \left( \pi \frac{l}{\nt} \right)
     \right]
     Q_{i, l}
-    \exp \left( 2 \pi \frac{j l}{\nt} I \right).
+    \expp{2 \pi \frac{j l}{\nt} I}.
 
 As a result, the main equation becomes
 
@@ -321,12 +321,12 @@ As a result, the main equation becomes
         \frac{1}{\sfact{2}}
         \left( \Delta C \right)_{i, l}
     \right]
-    \exp \left( 2 \pi \frac{j l}{\nt} I \right)
+    \expp{2 \pi \frac{j l}{\nt} I}
 
     =
     \sum_l
     \left( RHS \right)_{i, l}
-    \exp \left( 2 \pi \frac{j l}{\nt} I \right),
+    \expp{2 \pi \frac{j l}{\nt} I},
 
 where :math:`\left( \Delta C \right)_{i, k}` and :math:`\left( RHS \right)_{i, l}` denote the Fourier coefficients of :math:`\left( \Delta c \right)` and the right-hand side, respectively.
 
@@ -338,9 +338,9 @@ By applying the forward transform to both sides:
     \left[
         \sum_l
         \left( RHS \right)_{i, l}
-        \exp \left( 2 \pi \frac{j l}{\nt} I \right)
+        \expp{2 \pi \frac{j l}{\nt} I}
     \right]
-    \exp \left( - 2 \pi \frac{j k}{\nt} I \right),
+    \expp{- 2 \pi \frac{j k}{\nt} I},
 
 we obtain
 
