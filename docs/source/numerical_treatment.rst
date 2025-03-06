@@ -5,30 +5,31 @@
 Numerical Treatment
 ###################
 
-In summary, the velocity field :math:`u_i` is computed and subsequently used to transport the concentration field :math:`c`.
-
-*************************************
-Step 1: Computing the Stream Function
-*************************************
-
-Let :math:`c_{i, j}^n` be the concentration field at step :math:`n` (known), where the indices :math:`i` and :math:`j` denote the spatial locations in the radial and azimuthal directions, respectively.
+Let :math:`c_{i, j}` be the concentration field, where the indices :math:`i` and :math:`j` denote the spatial locations in the radial and azimuthal directions, respectively.
 The index ranges are :math:`i = 0, 1, \dots, \nr, \nr + 1` and :math:`j = 0, 1, \dots, \nt, \nt + 1`, where :math:`i = 0, \nr + 1` and :math:`j = 0, \nt + 1` store the boundary values and reflect periodicity, respectively.
 The following diagram illustrates the positioning of the concentration field :math:`c_{i, j}` (reddish dots).
 
 .. image:: ./concentration_position.png
 
-From this given field, we compute the spectral representation on the particle surface (at :math:`\vr = 1`, or equivalently :math:`i = 0`) using the discrete Fourier transform:
+Below we briefly discuss the process to integrate the concentration field in time numerically.
+We assume that :math:`c_{i, j}^n`, a concentration field at step :math:`n`, is given.
+
+*************************************
+Step 1: Computing the Stream Function
+*************************************
+
+To start, from :math:`c` on the particle surface (at :math:`\vr = 1`, or equivalently :math:`i = 0`), we transform it to the spectral domain:
 
 .. math::
 
     C_k^s
-    =
+    \equiv
     \sum_{j = 0}^{\nt - 1}
     c_{0, j + 1}
     \expp{- \frac{j k}{\nt} I},
 
 where :math:`k = 0, 1, \dots, \nt - 1`.
-Note that :math:`C_k^s` satisfies the complex-conjugate property:
+Note that, because of :math:`c_{i, j} \in \mathbb{R}`, :math:`C_k^s` satisfies the complex-conjugate property:
 
 .. math::
 
@@ -48,14 +49,37 @@ Since the concentration :math:`c` is located at cell centers in the azimuthal di
     C_k^s
     \expp{- \pi \frac{k}{\nt} I}.
 
-Using :math:`{C_k^s}^\prime`, we compute the stream function in the frequency domain :math:`\Psi_{i + \frac{1}{2}, k}`:
+Using :math:`{C_k^s}^\prime`, the azimuthal velocity on the particle is obtained by:
+
+.. math::
+
+    \vat{\ut}{r = 1}
+    =
+    \vat{
+        \frac{1}{\vr}
+        \pder{}{c}{\vt}
+    }{
+        r = 1
+    },
+
+or in the frequency domain:
+
+.. math::
+
+    \vat{U_\vt}{r = 1}
+    \equiv
+    U_{\vt}^s
+    =
+    I k {C_k^s}^\prime.
+
+Finally we evaluate the stream function in the frequency domain at radial cell faces :math:`\Psi_{i + \frac{1}{2}, k}` following:
 
 .. math::
 
     \Psi_{i + \frac{1}{2}, k}
     =
     \frac{1 - \vr_{i + \frac{1}{2}}^2}{2 \vr_{i + \frac{1}{2}}^{k}}
-    I k M {C_k^s}^\prime,
+    U_{\vt}^s,
 
 whose inverse transform yields :math:`\psi_{i + \frac{1}{2}, j + \frac{1}{2}}`, defined at cell corners.
 

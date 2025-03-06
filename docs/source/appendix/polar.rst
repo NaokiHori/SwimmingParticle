@@ -462,17 +462,17 @@ The wall-normal derivative is
         3 L \vx^2, \\
         \text{otherwise}
         &
-        -
-        A_k k \vx^{- k - 1}
+        +
+        A_k \left( - k \right) \vx^{- k - 1}
         +
         B_k k \vx^{k - 1}
-        -
-        \left( 2 - k \right) C_k \vx^{1 - k}
         +
-        \left( 2 + k \right) D_k \vx^{1 + k}.
+        C_k \left( 2 - k \right) \vx^{1 - k}
+        +
+        D_k \left( 2 + k \right) \vx^{1 + k}.
     \end{cases}
 
-The coefficients are determined by taking care of the boundary conditions imposed on the walls; namely, at :math:`\vx = \vx_i > 0` and :math:`\vx = \vx_o > \vx_i`, we enforce
+The coefficients are determined by incorporating the boundary conditions imposed on the walls; namely, at :math:`\vx = \vx_i > 0` and :math:`\vx = \vx_o > \vx_i`, we enforce
 
 .. math::
 

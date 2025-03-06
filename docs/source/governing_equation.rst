@@ -103,11 +103,33 @@ where :math:`I` is the imaginary unit, and
     \Psi_k \left( \vr, t \right)
     =
     \frac{1 - \vr^2}{2 \vr^{\left| k \right|}}
-    I k M C_k^s,
+    U_{\vt}^s,
 
 following |HU2019|.
+Note that, although this relation is not strictly valid due to the presence of the outer wall, we assume it as a good approximation when the outer boundary is sufficiently far.
 
-Here, :math:`C_k^s` represents the concentration field on the particle surface (at :math:`\vr = 1`) in the frequency domain:
+In the above equation, :math:`U_{\vt}^s` is the azimuthal velocity along the particle surface, expressed in the frequency domain:
+
+.. math::
+
+    U_{\vt}^s
+    =
+    I k C_k^s,
+
+or in the physical space:
+
+.. math::
+
+    \vat{\ut}{r = 1}
+    =
+    \vat{
+        \frac{1}{\vr}
+        \pder{}{\ut}{\vt}
+    }{
+        r = 1
+    }.
+
+:math:`C_k^s` represents the concentration field on the particle surface (at :math:`\vr = 1`) in the frequency domain:
 
 .. math::
 
@@ -115,8 +137,6 @@ Here, :math:`C_k^s` represents the concentration field on the particle surface (
     =
     \sum_k
     C_k^s \expp{I k \vt}.
-
-Note that, although this condition is not strictly met due to the presence of the outer wall, we assume it as a good approximation when :math:`R` is sufficiently large.
 
 ===================
 Concentration Field
@@ -153,7 +173,7 @@ and
         }{
             2 {\vr}^{\left| k \right| + 1}
         }
-        M C_k^s,
+        C_k^s,
 
     .. math::
 
@@ -165,7 +185,7 @@ and
             +
             \frac{\left| k \right|}{2} \frac{1}{{\vr}^{\left| k \right| + 1}}
         \right]
-        i k M C_k^s.
+        i k C_k^s.
 
     It is readily apparent that they satisfy the desired boundary conditions on the particle surface.
 

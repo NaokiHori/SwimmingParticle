@@ -23,7 +23,7 @@ def compute_boundary_condition(ys: np.ndarray) -> [np.ndarray, np.ndarray]:
 def get_f(k: int, x: float) -> float:
     if 0 == k:
         raise RuntimeError("This code should not be reachable")
-    elif -1 == k or 1 == k:
+    elif 1 == k:
         return [
             np.power(x, -1),
             x,
@@ -42,7 +42,7 @@ def get_f(k: int, x: float) -> float:
 def get_dfdx(k: int, x: float) -> float:
     if 0 == k:
         raise RuntimeError("This code should not be reachable")
-    elif -1 == k or 1 == k:
+    elif 1 == k:
         return [
             - np.power(x, -2),
             1,
@@ -51,10 +51,10 @@ def get_dfdx(k: int, x: float) -> float:
         ]
     else:
         return [
-            - (0 + k) * np.power(x, - k - 1),
-            + (0 + k) * np.power(x, + k - 1),
-            - (2 - k) * np.power(x, - k + 1),
-            + (2 + k) * np.power(x, + k + 1),
+            (0 - k) * np.power(x, 0 - k - 1),
+            (0 + k) * np.power(x, 0 + k - 1),
+            (2 - k) * np.power(x, 2 - k - 1),
+            (2 + k) * np.power(x, 2 + k - 1),
         ]
 
 def compute_stream_function(xs: np.ndarray, ys: np.ndarray, bc: [np.ndarray, np.ndarray]) -> np.ndarray:
