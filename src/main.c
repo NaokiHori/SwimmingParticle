@@ -8,6 +8,7 @@
 #include "tri_diagonal_matrix.h"
 #include "./compute_stream_function.h"
 #include "./compute_surface_concentration.h"
+#include "./compute_surface_velocity.h"
 #include "./decide_time_step_size.h"
 #include "./evaluate_right_hand_side.h"
 #include "./initialize.h"
@@ -49,8 +50,11 @@ int main(
   runge_kutta_buffer_t runge_kutta_buffer = {0};
   prepare_array((size_t [NDIMS]){domain.nx + 2, domain.ny + 2}, &runge_kutta_buffer.non_linear);
   prepare_array((size_t [NDIMS]){domain.nx + 2, domain.ny + 2}, &runge_kutta_buffer.increment);
-  // auxiliary buffer, concentration on the object surface
+  // auxiliary buffer
+  // - concentration on the object surface
+  // - velocity on the object surface
   double * const surface_concentration = memory_alloc(domain.ny, sizeof(double));
+  double * const surface_velocity = memory_alloc(domain.ny, sizeof(double));
   // impose initial condition
   initialize(&domain, concentration);
   // schedule events
@@ -69,7 +73,8 @@ int main(
     double dt = 0.;
     for (size_t runge_kutta_step = 0; runge_kutta_step < RUNGE_KUTTA_STEP_MAX; runge_kutta_step++) {
       compute_surface_concentration(&domain, rdft_plan, concentration, surface_concentration);
-      compute_stream_function(&domain, rdft_plan, surface_concentration, stream_function);
+      compute_surface_velocity(&domain, surface_concentration, surface_velocity);
+      compute_stream_function(&domain, rdft_plan, surface_velocity, stream_function);
       if (0 == runge_kutta_step) {
         decide_time_step_size(peclet, &domain, stream_function, &dt);
       }
@@ -100,6 +105,7 @@ int main(
   destroy_array(&tri_diagonal_matrix.c);
   destroy_array(&tri_diagonal_matrix.u);
   memory_free(surface_concentration);
+  memory_free(surface_velocity);
   domain_finalize(&domain);
   if (0 != rdft_destroy_plan(&rdft_plan)) {
     return 1;

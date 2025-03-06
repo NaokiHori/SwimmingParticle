@@ -7,7 +7,7 @@
 extern int compute_stream_function(
     const domain_t * const domain,
     rdft_plan_t * const rdft_plan,
-    const double * const surface_concentration,
+    const double * const surface_velocity,
     double ** const stream_function
 );
 
