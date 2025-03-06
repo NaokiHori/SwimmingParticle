@@ -96,17 +96,24 @@ In particular, the solution can be conveniently expressed using the stream funct
     \Psi_k \left( \vr, t \right)
     \expp{I k \vt},
 
-where :math:`I` is the imaginary unit, and
+where :math:`I` is the imaginary unit.
+
+:math:`\Psi_k` is the stream function in the frequency space at :math:`k`-th wavenumber.
+Following |HU2019|, this is given by
 
 .. math::
 
     \Psi_k \left( \vr, t \right)
     =
     \frac{1 - \vr^2}{2 \vr^{\left| k \right|}}
-    U_{\vt}^s,
+    U_{\vt}^s.
 
-following |HU2019|.
-Note that, although this relation is not strictly valid due to the presence of the outer wall, we assume it as a good approximation when the outer boundary is sufficiently far.
+Although this relation is not strictly valid due to the presence of the outer wall, we assume it as a good approximation when the outer boundary is sufficiently far.
+
+.. note::
+
+    It is possible to derive another formulation which properly impose the no-slip and impermeable conditions.
+    See :ref:`the appendix <appendix_stream_function>` for details.
 
 In the above equation, :math:`U_{\vt}^s` is the azimuthal velocity along the particle surface, expressed in the frequency domain:
 

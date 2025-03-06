@@ -462,7 +462,6 @@ The wall-normal derivative is
         3 L \vx^2, \\
         \text{otherwise}
         &
-        +
         A_k \left( - k \right) \vx^{- k - 1}
         +
         B_k k \vx^{k - 1}

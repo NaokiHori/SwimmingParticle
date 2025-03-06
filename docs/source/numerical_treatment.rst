@@ -72,16 +72,10 @@ or in the frequency domain:
     =
     I k {C_k^s}^\prime.
 
-Finally we evaluate the stream function in the frequency domain at radial cell faces :math:`\Psi_{i + \frac{1}{2}, k}` following:
+Finally we evaluate the stream function in the frequency domain at radial cell faces :math:`\Psi_{i + \frac{1}{2}, k}`.
+Both the approximated solution proposed by |HU2019| (default) and exact solution (optional) are implemented (see ``src/compute_stream_function.c``).
 
-.. math::
-
-    \Psi_{i + \frac{1}{2}, k}
-    =
-    \frac{1 - \vr_{i + \frac{1}{2}}^2}{2 \vr_{i + \frac{1}{2}}^{k}}
-    U_{\vt}^s,
-
-whose inverse transform yields :math:`\psi_{i + \frac{1}{2}, j + \frac{1}{2}}`, defined at cell corners.
+The inverse transform of :math:`\Psi_{i + \frac{1}{2}, k}` yields :math:`\psi_{i + \frac{1}{2}, j + \frac{1}{2}}`, defined at cell corners.
 
 ************************************
 Step 2: Computing Staggered Velocity

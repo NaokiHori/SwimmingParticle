@@ -2,6 +2,8 @@
 Appendix
 ########
 
+.. _appendix_stream_function:
+
 ***************
 Stream function
 ***************
