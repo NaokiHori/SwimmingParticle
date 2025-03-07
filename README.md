@@ -51,5 +51,7 @@ Governing equation and its numerical treatment are briefly documented [here](htt
 
 ## Reference
 
+- Williamson, *J. Comput. Phys.* (**35**), 1980
 - Hu et al., *Phys. Rev. Lett.* (**123**), 2019
+- Wood and Porter, *J. Appl. Eng. Math.* (**6**), 2019
 

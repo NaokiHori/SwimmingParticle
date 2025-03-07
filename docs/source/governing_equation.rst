@@ -44,19 +44,14 @@ The concentration of the solute (e.g., the non-dimensional mass per unit area) f
     \pder{}{}{x_j}
     \pder{}{c}{x_j}.
 
-*******************
-Boundary Conditions
-*******************
+The azimuthal direction is periodic by definition, while the domain is bounded by walls in the radial direction, specifically at :math:`\vr = 1` and :math:`\vr = R`.
+Their implications are separately discussed below for the velocity and the concentration fields.
 
-The azimuthal direction is periodic by definition.
-The radial boundary conditions and their implications are discussed below.
-
-==============
+**************
 Velocity Field
-==============
+**************
 
-The domain is bounded by walls in the radial direction, specifically at :math:`\vr = 1` and :math:`\vr = R`.
-These walls satisfy the impermeability condition:
+The walls satisfy the impermeability condition:
 
 .. math::
 
@@ -85,7 +80,7 @@ while a slip velocity, proportional to the azimuthal concentration gradient, is 
         \pder{}{c}{\vt}
     }{\vr = 1}.
 
-Since the Stokes equation is a pure boundary-value problem, the flow field is uniquely determined once the aforementioned boundary conditions are prescribed.
+Since the Stokes equation is a pure boundary-value problem, the entire flow field is uniquely determined once the aforementioned boundary conditions are prescribed.
 In particular, the solution can be conveniently expressed using the stream function :math:`\psi \left( \vr, \vt, t \right)`, given by:
 
 .. math::
@@ -96,30 +91,84 @@ In particular, the solution can be conveniently expressed using the stream funct
     \Psi_k \left( \vr, t \right)
     \expp{I k \vt},
 
-where :math:`I` is the imaginary unit.
+where :math:`I` is the imaginary unit, and :math:`\Psi_k` is the stream function in the frequency space.
+Because of :math:`\psi \in \mathbb{R}`, :math:`\Psi_k` satisfies the complex-conjugate property, and thus it is sufficient to consider :math:`k \ge 0`.
 
-:math:`\Psi_k` is the stream function in the frequency space at :math:`k`-th wavenumber.
-Following |HU2019|, this is given by
+As derived in :ref:`the appendix <appendix_stream_function>`, this is given by
+
+.. math::
+
+    \Psi_k
+    =
+    \begin{cases}
+        k = 0
+        &
+        \text{unused}, \\
+        k = 1
+        &
+        A_1 \vr^{-1}
+        +
+        B_1 \vr
+        +
+        E_1 \vr \log \vr
+        +
+        D_1 \vr^3, \\
+        \text{otherwise}
+        &
+        A_k \vr^{-k}
+        +
+        B_k \vr^k
+        +
+        C_k \vr^{2 - k}
+        +
+        D_k \vr^{2 + k},
+    \end{cases}
+
+where the coefficients :math:`A_k, B_k, C_k, D_k, E_1` are determined using the boundary conditions at :math:`\vr = 1` and :math:`\vr = R`.
+Assuming that :math:`R` is infinity, we request :math:`B_k, E_1, D_k` to be zero so that the solution converges, leading to
+
+.. math::
+
+    \Psi_k
+    =
+    A_k \vr^{-k}
+    +
+    C_k \vr^{2 - k}.
+
+By imposing the boundary conditions at :math:`\vr = 1`:
+
+.. math::
+
+    \begin{pmatrix}
+        1 & 1 \\
+        - k & 2 - k \\
+    \end{pmatrix}
+    \begin{pmatrix}
+        A_k \\
+        C_k
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        0 \\
+        - \left( U_{\vt} \right)_k^s,
+    \end{pmatrix}
+
+we obtain
 
 .. math::
 
     \Psi_k \left( \vr, t \right)
     =
-    \frac{1 - \vr^2}{2 \vr^{\left| k \right|}}
-    U_{\vt}^s.
+    \frac{1 - \vr^2}{2 \vr^{k}}
+    \left( U_{\vt} \right)_k^s.
 
-Although this relation is not strictly valid due to the presence of the outer wall, we assume it as a good approximation when the outer boundary is sufficiently far.
-
-.. note::
-
-    It is possible to derive another formulation which properly impose the no-slip and impermeable conditions.
-    See :ref:`the appendix <appendix_stream_function>` for details.
+Although this simplified relation is not strictly valid in enclosed domains we currently consider, it serves as a good approximation (|HU2019|).
 
 In the above equation, :math:`U_{\vt}^s` is the azimuthal velocity along the particle surface, expressed in the frequency domain:
 
 .. math::
 
-    U_{\vt}^s
+    \left( U_{\vt} \right)_k^s
     =
     I k C_k^s,
 
@@ -145,9 +194,9 @@ or in the physical space:
     \sum_k
     C_k^s \expp{I k \vt}.
 
-===================
+*******************
 Concentration Field
-===================
+*******************
 
 We impose the following conditions on the inner and outer boundaries, respectively:
 
@@ -164,35 +213,4 @@ and
     \vat{c}{\vr = R}
     =
     0.
-
-.. note::
-
-    Despite not used in this project for now, the velocity components are obtained by differentiating the stream function in the frequency space:
-
-    .. math::
-
-        \left( U_{\vr} \right)_k
-        \equiv
-        -
-        k^2
-        \frac{
-            1 - {\vr}^2
-        }{
-            2 {\vr}^{\left| k \right| + 1}
-        }
-        C_k^s,
-
-    .. math::
-
-        \left( U_{\vt} \right)_k
-        \equiv
-        \left[
-            \left( 1 - \frac{\left| k \right|}{2} \right)
-            \frac{1}{{\vr}^{\left| k \right| - 1}}
-            +
-            \frac{\left| k \right|}{2} \frac{1}{{\vr}^{\left| k \right| + 1}}
-        \right]
-        i k C_k^s.
-
-    It is readily apparent that they satisfy the desired boundary conditions on the particle surface.
 
