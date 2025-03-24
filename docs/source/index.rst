@@ -7,7 +7,7 @@ Swimming Particle
 
 .. image:: ../../cover.gif
 
-A finite-difference-based numerical simulator for surfactant-driven, self-propelling particles.
+A finite-difference-based numerical simulator for diffusophoretic, self-propelling particles.
 
 .. toctree::
     :maxdepth: 1

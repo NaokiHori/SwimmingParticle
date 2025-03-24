@@ -253,14 +253,13 @@ The Runge-Kutta coefficients are (|WILLIAMSON1980|):
 
 .. math::
 
-    &
-    \alpha^0 = 1 / 3, \alpha^1 = 5 / 12, \alpha^2 = 1 / 4,
-
-    &
-    \beta^0 = 0, \beta^1 = - 5 / 9, \beta^2 = - 153 / 128,
-
-    &
-    \gamma^0 = 1 / 3, \gamma^1 = 15 / 16, \gamma^2 = 8 / 15.
+   \begin{array}{c|ccc}
+             & 0 & 1 & 2 \\
+      \hline
+      \alpha & \frac{+1920}{5760} & \frac{+2400}{5760} & \frac{+1440}{5760} \\
+      \beta  & \frac{    0}{5760} & \frac{-3200}{5760} & \frac{-6885}{5760} \\
+      \gamma & \frac{+1920}{5760} & \frac{+5400}{5760} & \frac{+3072}{5760} \\
+   \end{array}
 
 To simplify the discrete Helmholtz operator on the left-hand side, we focus on the azimuthal component of the discrete Laplace operator with respect to a cell-centered quantity :math:`q`:
 

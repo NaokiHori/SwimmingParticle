@@ -7,7 +7,7 @@
 
 ## Overview
 
-A finite-difference-based numerical simulator for surfactant-driven, self-propelling particles.
+A finite-difference-based numerical simulator for diffusophoretic, self-propelling particles.
 
 ## Quick Start
 

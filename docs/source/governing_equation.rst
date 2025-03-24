@@ -5,20 +5,190 @@
 Governing Equation
 ##################
 
-**********************
-Differential Equations
-**********************
+We consider a two-dimensional domain where a circular solid particle whose radius is :math:`\dim{a}` is positioned at the center.
+Hereafter :math:`\dim{q}` denotes that the variable :math:`q` is dimensional (i.e., not non-dimensionalized), and vice versa.
 
-We consider a two-dimensional domain where a circular solid particle is positioned at the center.
-The liquid is assumed to be incompressible, leading to:
+The motion of liquid is governed by the incompressibility constraint:
+
+.. math::
+
+    \pder{}{\dim{u}_i}{\dim{x}_i}
+    =
+    0
+
+as well as the momentum balance for Newtonian liquids:
+
+.. math::
+
+    \dim{\rho}
+    \left(
+        \pder{}{\dim{u}_i}{\dim{t}}
+        +
+        \dim{u}_j
+        \pder{}{\dim{u}_i}{\dim{x}_j}
+    \right)
+    =
+    \pder{}{\dim{\sigma}_{ij}}{\dim{x}_j}
+    =
+    -
+    \pder{}{\dim{p}}{\dim{x}_i}
+    +
+    \dim{\mu}
+    \pder{}{}{\dim{x}_j}
+    \pder{}{\dim{u}_i}{\dim{x}_j}.
+
+The particle emits a solute, which is transported into the liquid.
+In particular, the concentration of the solute (mass per unit area) follows the advection-diffusion equation:
+
+.. math::
+
+    \pder{}{\dim{c}}{\dim{t}}
+    +
+    \dim{u}_j
+    \pder{}{\dim{c}}{\dim{x}_j}
+    =
+    \dim{D}
+    \pder{}{}{\dim{x}_j}
+    \pder{}{\dim{c}}{\dim{x}_j},
+
+where :math:`\dim{D}` is the diffusivity of the solute.
+
+On the particle surface, we request the emission rate of the solute to be constant:
+
+.. math::
+
+    \dim{E}
+    \equiv
+    -
+    \dim{D}
+    \vat{
+        \pder{}{\dim{c}}{\dim{\vr}}
+    }{\dim{r} = \dim{a}}
+    =
+    const.,
+
+which serves as a radial boundary condition with respect to the concentration field.
+In the tangential direction, a slip velocity is prescribed:
+
+.. math::
+
+    \vat{
+        \dim{\ut}
+    }{\dim{r} = \dim{a}}
+    =
+    \dim{M}
+    \vat{
+        \frac{1}{\dim{\vr}}
+        \pder{}{\dim{c}}{\dim{\vt}}
+    }{\dim{r} = \dim{a}},
+
+where :math:`\dim{M}` is called mobility.
+
+The particle experiences hydrodynamic force exerted by the surround liquid, which is governed by the Newton-Euler equation:
+
+.. math::
+
+    &
+    \dim{\rho} \pi \dim{a}^2 \der{}{\dim{v}_i}{\dim{t}}
+    =
+    \oint \dim{\sigma}_{ij} n_j d\dim{l},
+
+    &
+    \frac{1}{2} \dim{\rho} \pi \dim{a}^4 \der{}{\dim{\omega}_i}{\dim{t}}
+    =
+    \oint \epsilon_{ijk} \dim{r}_j \dim{\sigma}_{kl} n_l d\dim{l},
+
+where we assume the particle is neutrally-buoyant.
+:math:`\dim{v}_i` and :math:`\dim{\omega}_i` denote the translational and rotational velocity, and the right-hand-side integrals are applied to the interface along the particle.
+
+Normalized equations are
 
 .. math::
 
     \pder{}{u_i}{x_i}
     =
-    0.
+    0,
 
-We also assume that the Reynolds number is sufficiently small, resulting in the Stokes equation as the momentum balance:
+.. math::
+
+    \rho
+    \left(
+        \pder{}{u_i}{t}
+        +
+        u_j
+        \pder{}{u_i}{x_j}
+    \right)
+    =
+    \frac{\dim{\mu} \dim{D}}{\dim{\rho} \dim{E} \dim{M} \dim{a}}
+    \left(
+        -
+        \pder{}{p}{x_i}
+        +
+        \pder{}{}{x_j}
+        \pder{}{u_i}{x_j}
+    \right),
+
+.. math::
+
+    \pder{}{c}{t}
+    +
+    u_j
+    \pder{}{c}{x_j}
+    =
+    \frac{\dim{\rho} \dim{D}}{\dim{E} \dim{a}}
+    \frac{\dim{D}}{\dim{\rho} \dim{M}}
+    \pder{}{}{x_j}
+    \pder{}{c}{x_j},
+
+with the corresponding boundary conditions on the particle:
+
+.. math::
+
+    \vat{
+        \pder{}{c}{\vr}
+    }{r = 1}
+    =
+    -
+    \frac{\dim{E} \dim{a}}{\dim{\rho} \dim{D}},
+
+.. math::
+
+    \vat{
+        \ut
+    }{r = 1}
+    =
+    \frac{\dim{\rho} \dim{D}}{\dim{E} \dim{a}}
+    \vat{
+        \frac{1}{\vr}
+        \pder{}{c}{\vt}
+    }{r = 1}.
+
+The non-dimensional Newton-Euler equation leads to
+
+.. math::
+
+    &
+    \rho \pi a^2 \der{}{v_i}{t}
+    =
+    \frac{\dim{\mu} \dim{D}}{\dim{\rho} \dim{E} \dim{M} \dim{a}}
+    \oint \sigma_{ij} n_j dl,
+
+    &
+    \frac{1}{2} \rho \pi a^4 \der{}{\omega_i}{t}
+    =
+    \frac{\dim{\mu} \dim{D}}{\dim{\rho} \dim{E} \dim{M} \dim{a}}
+    \oint \epsilon_{ijk} r_j \sigma_{kl} n_l dl.
+
+Note that we adopt :math:`\dim{a}` and :math:`\dim{E} \dim{M} / \dim{D}` as reference length and velocity scales to obtain the non-dimensional relations (|HU2019|).
+
+In this project, we assume that the Reynolds number is sufficiently small so that the inertial effects on the momentum transport can be neglected.
+By fixing the non-dimensional flux to be unity (which does not loss the generality), we obtain a set of equations governing the whole system:
+
+.. math::
+
+    \pder{}{u_i}{x_i}
+    =
+    0,
 
 .. math::
 
@@ -28,10 +198,7 @@ We also assume that the Reynolds number is sufficiently small, resulting in the 
     \pder{}{p}{x_i}
     +
     \pder{}{}{x_j}
-    \pder{}{u_i}{x_j}.
-
-The particle emits a solute, which is transported into the liquid.
-The concentration of the solute (e.g., the non-dimensional mass per unit area) follows the advection-diffusion equation:
+    \pder{}{u_i}{x_j},
 
 .. math::
 
@@ -42,16 +209,52 @@ The concentration of the solute (e.g., the non-dimensional mass per unit area) f
     =
     \frac{1}{Pe}
     \pder{}{}{x_j}
-    \pder{}{c}{x_j}.
+    \pder{}{c}{x_j},
 
-The azimuthal direction is periodic by definition, while the domain is bounded by walls in the radial direction, specifically at :math:`\vr = 1` and :math:`\vr = R`.
-Their implications are separately discussed below for the velocity and the concentration fields.
+with the corresponding boundary conditions on the particle:
+
+.. math::
+
+    \vat{
+        \pder{}{c}{\vr}
+    }{r = 1}
+    =
+    -
+    1,
+
+.. math::
+
+    \vat{
+        \ut
+    }{r = 1}
+    =
+    \vat{
+        \frac{1}{\vr}
+        \pder{}{c}{\vt}
+    }{r = 1}.
+
+Note that the Newton-Euler equation in the limit of :math:`Re \rightarrow 0` leads to
+
+.. math::
+
+    0_i
+    =
+    \oint \sigma_{ij} n_j dl,
+
+    0_i
+    =
+    \oint \epsilon_{ijk} r_j \sigma_{kl} n_l dl,
+
+implying that the swimming particle (in the absence of external forces) is force-free and torque-free (|LAUGA2020|).
 
 **************
 Velocity Field
 **************
 
-The walls satisfy the impermeability condition:
+Here we elaborate the velocity field.
+
+To begin, we set a wall at :math:`\vr = R`.
+The wall and the particle satisfy the impermeability condition:
 
 .. math::
 
@@ -61,15 +264,7 @@ The walls satisfy the impermeability condition:
     =
     0.
 
-The outer wall follows the no-slip condition:
-
-.. math::
-
-    \vat{\ut}{\vr = R}
-    =
-    0,
-
-while a slip velocity, proportional to the azimuthal concentration gradient, is enforced on the inner wall:
+On the inner wall, again, a slip velocity is enforced:
 
 .. math::
 
@@ -78,9 +273,17 @@ while a slip velocity, proportional to the azimuthal concentration gradient, is 
     \vat{
         \frac{1}{r}
         \pder{}{c}{\vt}
-    }{\vr = 1}.
+    }{\vr = 1},
 
-Since the Stokes equation is a pure boundary-value problem, the entire flow field is uniquely determined once the aforementioned boundary conditions are prescribed.
+whereas the outer wall follows the no-slip condition:
+
+.. math::
+
+    \vat{\ut}{\vr = R}
+    =
+    0.
+
+Since the Stokes equation is a pure boundary-value problem, the entire flow field is uniquely determined once the boundary conditions are given.
 In particular, the solution can be conveniently expressed using the stream function :math:`\psi \left( \vr, \vt, t \right)`, given by:
 
 .. math::
@@ -125,6 +328,7 @@ As derived in :ref:`the appendix <appendix_stream_function>`, this is given by
     \end{cases}
 
 where the coefficients :math:`A_k, B_k, C_k, D_k, E_1` are determined using the boundary conditions at :math:`\vr = 1` and :math:`\vr = R`.
+
 Assuming that :math:`R` is infinity, we request :math:`B_k, E_1, D_k` to be zero so that the solution converges, leading to
 
 .. math::
@@ -196,7 +400,7 @@ or in the physical space:
 Concentration Field
 *******************
 
-We impose the following conditions on the inner and outer boundaries, respectively:
+In addition to the constant-flux condition on the particle:
 
 .. math::
 
@@ -204,7 +408,7 @@ We impose the following conditions on the inner and outer boundaries, respective
     =
     -1,
 
-and
+we impose the Dirichlet condition on the outer boundary:
 
 .. math::
 
@@ -212,9 +416,7 @@ and
     =
     0.
 
-.. note::
-
-    In practice, we set :math:`R` to a finite value, which contradicts the obtained stream function derived under the assumption that :math:`R \to \infty`.
-    This is originated by the fact that no analytical solution is available due to the non-linear term in the advection-diffusion equation.
-    We assume, nevertheless, that the approximation remains sufficiently accurate for large values of :math:`R`.
+In practice, we set :math:`R` to a finite value, which mismatches with the obtained stream function derived under the assumption that :math:`R \to \infty`.
+This contradiction is originated by the fact that no analytical solution is available due to the non-linear term in the advection-diffusion equation.
+We assume, nevertheless, that the approximation remains sufficiently accurate for large values of :math:`R`.
 
